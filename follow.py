@@ -36,7 +36,7 @@ class InstaBot:
           self.driver.get("https://www.instagram.com/" + self.username + "/followers")
           
           followers = self._get_names()
-
+          
           not_following_me_back = [user for user in following if user not in followers]
           print(not_following_me_back)
         except Exception as e:
@@ -69,7 +69,7 @@ class InstaBot:
               height = self.driver.execute_script("arguments[0].scrollTo(0, arguments[0].scrollHeight); return arguments[0].scrollHeight;", scroll_box)
 
           # Get element with tag 'a' in scroll_box
-          links = scroll_box.find_elements(By.TAG_NAME,'_aacl _aaco _aacw _aacx _aad7 _aade')
+          links = scroll_box.find_elements(By.TAG_NAME,'a')
 
           # Get names in "links" element
           names = [name.text for name in links if name.text != '']
@@ -85,5 +85,5 @@ class InstaBot:
         except Exception as e:
           print("Erro", e)
      
-my_bot = InstaBot('YOUR_USER', 'YOUR_PASSWORD')
+my_bot = InstaBot('YOUR_USER_NAME', 'YOUR_PASSWORD')
 my_bot.get_unfollowers()
